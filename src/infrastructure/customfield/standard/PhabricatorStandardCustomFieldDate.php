@@ -11,7 +11,7 @@ final class PhabricatorStandardCustomFieldDate
     $indexes = array();
 
     $value = $this->getFieldValue();
-    if (strlen($value)) {
+    if (strlen($value ?? '')) {
       $indexes[] = $this->newNumericIndex((int)$value);
     }
 
@@ -24,7 +24,7 @@ final class PhabricatorStandardCustomFieldDate
 
   public function getValueForStorage() {
     $value = $this->getFieldValue();
-    if (strlen($value)) {
+    if (strlen($value ?? '')) {
       return (int)$value;
     } else {
       return null;
@@ -32,7 +32,7 @@ final class PhabricatorStandardCustomFieldDate
   }
 
   public function setValueFromStorage($value) {
-    if (strlen($value)) {
+    if (strlen($value ?? '')) {
       $value = (int)$value;
     } else {
       $value = null;
